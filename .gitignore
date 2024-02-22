@@ -1,0 +1,12 @@
+# Node.js dependencies
+node_modules/
+
+# Compiled binary addons
+build/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment variables file
+.env
