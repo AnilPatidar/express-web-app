@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST API Call from HTML</title>
+    <script>
+        // Function to handle button click
+        function handleButtonClick() {
+            const resultContainer = document.getElementById('result');
+            resultContainer.innerText = 'Loading...';
+
+            // Make a call to the REST API
+            fetch('https://restcountries.com/v3.1/all')
+                .then(response => response.json())
+                .then(data => {
+                    // Extract the common name of each country and join them into a string with line breaks
+                    const countryNames = data.map(country => country.name.common).join('<br>');
+                    resultContainer.innerHTML = countryNames; // Use innerHTML to render HTML content
+                })
+                .catch(error => {
+                    resultContainer.innerText = 'Error occurred while fetching data.';
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>REST API Call from HTML</h1>
+    <button onclick="handleButtonClick()">Fetch Data from API</button>
+    <div id="result"></div>
+</body>
+</html>
