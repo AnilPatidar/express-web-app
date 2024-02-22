@@ -11,11 +11,12 @@
             resultContainer.innerText = 'Loading...';
 
             // Make a call to the REST API
-            fetch('http://localhost:3000/api/data')
+            fetch('https://restcountries.com/v3.1/all')
                 .then(response => response.json())
                 .then(data => {
-                     console.log(data);
-                    resultContainer.innerText = data.message;
+                    // Extract the common name of each country and join them into a string with line breaks
+                    const countryNames = data.map(country => country.name.common).join('<br>');
+                    resultContainer.innerHTML = countryNames; // Use innerHTML to render HTML content
                 })
                 .catch(error => {
                     resultContainer.innerText = 'Error occurred while fetching data.';
